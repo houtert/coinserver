@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+    <link id="favicon" rel="icon" type="image/x-icon" href="{{ url_for('static', path='favicon.ico') }}">
+    <title>MyCrypto Server</title>
+</head>
+<body>
+<div class="ui container">
+    <br>
+    <button id="home" class="ui icon huge button">
+        <i class="home icon"></i>
+    </button>
+
+    <table class="ui table">
+        <tr>
+            <td>
+
+            </td>
+            <td><img src="../static/icon/{{ symbol }}.webp"></td>
+            <td><h1>{{ symbol }} - {{ name }}</h1></td>
+        </tr>
+    </table>
+    <br><br>
+    <center>
+        <div id="chart" class="ui container">
+
+        </div>
+    </center>
+    <br>
+    <div class="ui container">
+        <table class="ui striped table">
+            <tr>
+                <h2>
+                    <th>Time</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                </h2>
+            </tr>
+            {% for candle in candles %}
+            <tr>
+                <td> {{candle.Time}}</td>
+                <td> {{candle.Open}}</td>
+                <td> {{candle.High}}</td>
+                <td> {{candle.Low}}</td>
+                <td> {{candle.Close}}</td>
+                <td> {{candle.Volume}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script src="{{ url_for('static', path='coin.js') }}"></script>
+<script src="{{ url_for('static', path='chart.js') }}"></script>
+</body>
+</html>
